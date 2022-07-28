@@ -9,10 +9,12 @@
 
   <p>
     <%= link_to "My Credentials", explore_api_path(:me, format: :json), class: "btn btn-primary data-explore" %>
-    <%= link_to "Projects", explore_api_path(:projects, format: :json), class: "btn btn-secondary data-explore" %>
+    <%= link_to "External Flows", explore_api_path(:external_flows, format: :json), class: "btn btn-secondary data-explore" %>
     <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-primary" %>
   </p>
-
+<% doorkeeper.get("api/v1/flows.json").parsed.each do |o| %>
+  <%= link_to o['title'], explore_api_path("flows/#{o['id']}/run_external", format: :json), class: 'btn btn-info data-explore' %><br/><br/>
+<% end %>
   <p>You are logged in as <%= current_user.email %></p>
 
   <p><pre id="display-json">Select one of the api methods above</pre></p>

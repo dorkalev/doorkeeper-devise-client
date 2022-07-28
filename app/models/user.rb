@@ -1,9 +1,9 @@
 class User < ActiveRecord::Base
   devise :database_authenticatable,
-         :registerable,
-         :recoverable,
-         :rememberable,
-         :validatable
+    :registerable,
+    :recoverable,
+    :rememberable,
+    :validatable
 
   devise :omniauthable, omniauth_providers: %i[doorkeeper]
 
